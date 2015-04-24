@@ -1,0 +1,329 @@
+Peyton Duncan | Picture Lab Answer Sheet | Spring 2015
+
+Section 1:
+  1: 8 Bits
+  2: 3 Bytes for RGB
+  3: 307,200
+
+Section 2:
+  1: 255 0 255
+  2: 255 255 0
+  3: 77 0 77
+  4: 255 255 255
+  5: 125 125 125
+
+Section 3:
+  1: 0
+  2: 0
+  3: 640
+  4: 480
+  5: Top to Bottom
+  6: Left to Right
+
+Section 4:
+  1:
+  public int getCount(int value) {
+  		int count = 0;
+  		for (int i = 0; i < matrix.length; i++) {
+  			for (int j = 0; j < matrix[i].length; j++) {
+  				if (value == matrix[i][j]) {
+  					count++;
+  				}
+  			}
+  		}
+  		return count;
+  	}
+
+  2:
+  public int getLargest() {
+		int largest = 0;
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix[i].length; j++) {
+				if (matrix[i][j] > largest) {
+					largest = matrix[i][j];
+				}
+			}
+		}
+		return largest;
+	}
+
+  3:
+  public getColTotal(int columnVal) {
+		int result = 0;
+		for (int i = 0; i < matrix[0].length; i++) {
+			result += matrix[i][columnVal];
+		}
+		return result;
+	}
+
+Section 5:
+  1: No
+  2: Yes
+  3: No
+  4: Yes
+  5: Yes
+  6: Yes
+  7: No
+
+  Exercises
+  3:
+  public static void keepOnlyBlue() {
+		Pixel[][] pixels = this.getPixels2D();
+		for (Pixel[] rowArray : pixels) {
+			for (Pixel pixelObj : rowArray) {
+				pixelObj.setRed(0);
+				pixelObj.setGreen(0);
+			}
+		}
+	}
+
+  4:
+  public static void negate() {
+		Pixel[][] pixels = this.getPixels2D();
+		for (Pixel[] rowArray : pixels) {
+			for (Pixel pixelObj : rowArray) {
+				pixelObj.setRed(255 - pixelObj.getRed());
+				pixelObj.setGreen(255 - pixelObj.getGreen());
+				pixelObj.setBlue(255 - pixelObj.getBlue());
+			}
+		}
+	}
+
+  5:
+  public static void grayscale() {
+		Pixel[][] pixels = this.getPixels2D();
+		int avg = 0;
+		for (Pixel[] rowArray : pixels) {
+			for (Pixel pixelObj : rowArray) {
+				avg = (pixelObj.getRed() + pixelObj.getGreen() + pixelObj
+						.getBlue()) / 3;
+				pixelObj.setRed(avg);
+				pixelObj.setGreen(avg);
+				pixelObj.setBlue(avg);
+
+			}
+		}
+	}
+
+  6:
+  public static void fixUnderWater() {
+		Pixel[][] pixels = this.getPixels2D();
+		int avg = 0;
+		for (Pixel[] rowArray : pixels) {
+			for (Pixel pixelObj : rowArray) {
+				pixelObj.setRed(pixelObj.getRed() * 3);
+			}
+		}
+	}
+
+Section 6:
+  1:
+  public static void mirrorVerticalRightToLeft() {
+		Pixel[][] pixels = this.getPixels2D();
+		Pixel leftPixel = null;
+		Pixel rightPixel = null;
+		int width = pixels[0].length;
+		for (int i = 0; i < pixels.length; i++) {
+			for (int j = width - 1; j > width / 2; j--) {
+				leftPixel = pixels[i][j];
+				rightPixel = pixels[i][width - 1 - j];
+				rightPixel.setColor(leftPixel.getColor());
+			}
+		}
+	}
+
+  2:
+  public static void mirrorHorizontal() {
+		Pixel[][] pixels = this.getPixels2D();
+		Pixel topPixel = null;
+		Pixel botPixel = null;
+		int height = pixels.length;
+		for (int i = 0; i < height / 2; i++) {
+			for (int j = 0; j < pixels.length; j++) {
+				topPixel = pixels[i][j];
+				botPixel = pixels[i][height - 1 - j];
+				botPixel.setColor(leftPixel.getColor());
+			}
+		}
+	}
+
+  3:
+  public static void mirrorHorizontalBotToTop() {
+		Pixel[][] pixels = this.getPixels2D();
+		Pixel topPixel = null;
+		Pixel botPixel = null;
+		int height = pixels.length;
+		for (int i = height - 1; i > height / 2; i--) {
+			for (int j = 0; j < pixels.length; j++) {
+				topPixel = pixels[i][j];
+				botPixel = pixels[i][height - 1 - j];
+				botPixel.setColor(leftPixel.getColor());
+			}
+		}
+	}
+
+  4:
+  public static void mirrorDiagonal() {
+		Pixel[][] pixels = this.getPixels2D();
+		Pixel leftPixel = null;
+		Pixel rightPixel = null;
+		for (int row = 1; row < pixels.length; row++) {
+			for (int j = 0; j < row; j++) {
+				leftPixel = pixels[row][j];
+				rightPixel = pixels[j][row];
+				rightPixel.setColor(leftPixel.getColor());
+			}
+		}
+	}
+
+Section 7:
+  1: 90
+  2: 112
+
+  1:
+  public void mirrorTemple() {
+		Pixel leftPixel = null;
+		Pixel rightPixel = null;
+		int count = 0;
+		Pixel[][] pixels = this.getPixels2D();
+		for (int i = 30; i < 97; i++) {
+			for (int j = 10; j < 276; j++) {
+				count++;
+				leftPixel = pixels[i][j];
+				rightPixel = pixels[i][276 - j + 276];
+				rightPixel.setColor(leftPixel.getColor());
+			}
+		}
+		System.out.println(count);
+	}
+
+  2:
+  public void mirrorArms() {
+		Pixel topPixel = null;
+		Pixel botPixel = null;
+		Pixel[][] pixels = this.getPixels2D();
+		for (int i = 155; i < 191; i++) {
+			for (int j = 98; j < 169; j++) {
+				topPixel = pixels[i][j];
+				botPixel = pixels[191 - i + 191][j];
+				botPixel.setColor(topPixel.getColor());
+			}
+		}
+		for (int i = 155; i < 191; i++) {
+			for (int j = 238; j < 296; j++) {
+				topPixel = pixels[i][j];
+				botPixel = pixels[191 - i + 191][j];
+				botPixel.setColor(topPixel.getColor());
+			}
+		}
+	}
+
+  3:
+  public static void mirrorGull() {
+		Pixel leftPixel = null;
+		Pixel rightPixel = null;
+		Pixel[][] pixels = new Picture("seagull.jpg").getPixels2D();
+		for (int i = 225; i < 332; i++) {
+			for (int j = 219; j < 350; j++) {
+				leftPixel = pixels[i][j];
+				rightPixel = pixels[i][350 - j + 350];
+				rightPixel.setColor(leftPixel.getColor());
+			}
+		}
+	}
+
+Section 8:
+  1:
+  public static void copy(Picture fromPic, int startRow, int startCol,
+			int endRow, int endCol) {
+		Pixel fromPixel = null;
+		Pixel toPixel = null;
+		Pixel[][] toPixels = this.getPixels2D();
+		Pixel[][] fromPixels = fromPic.getPixels2D();
+		for (int fromRow = 0, toRow = startRow; fromRow < endRow
+				&& toRow < toPixels.length; fromRow++, toRow++) {
+			for (int fromCol = 0, toCol = startCol; fromCol < endCol
+					&& toCol < toPixels[0].length; fromCol++, toCol++) {
+				fromPixel = fromPixels[fromRow][fromCol];
+				toPixel = toPixels[toRow][toCol];
+				toPixel.setColor(fromPixel.getColor());
+			}
+		}
+	}
+
+  2:
+  public static collage(){
+    picture pic = new Picture(“snowman.jpg”);
+    for(int i = 0; i < 100; i++){
+    copy(pic,i,0);}
+    pic.explore;
+    }
+
+Section 9:
+  1:
+  public void edgeDetection(int edgeDist) {
+		Picture copy = new Picture(this);
+		Pixel leftPixel = null;
+		Pixel rightPixel = null;
+		Pixel[][] pixels = this.getPixels2D();
+		Color rightColor = null;
+
+		for (int row = 0; row < pixels.length; row++) {
+			for (int col = 0; col < pixels[0].length - 1; col++) {
+				leftPixel = pixels[row][col];
+				rightPixel = pixels[row][col + 1];
+				rightColor = rightPixel.getColor();
+				if (leftPixel.colorDistance(rightColor) > edgeDist) {
+					leftPixel.setColor(Color.BLACK);
+				} else {
+					leftPixel.setColor(Color.WHITE);
+				}
+			}
+		}
+
+		Pixel[][] copyPixels = copy.getPixels2D();
+		Pixel bottomPixel = null;
+		Pixel upperPixel = null;
+		Color upperColr = null;
+		for (int row = copyPixels.length - 1; row > 0; row--) {
+			for (int col = 0; col < copyPixels[0].length; col++) {
+
+				upperPixel = copyPixels[row + 1][col];
+				bottomPixel = copyPixels[row][col];
+				upperColr = upperPixel.getColor();
+				if (bottomPixel.colorDistance(upperColr) > edgeDist) {
+					pixels[row][col].setColor(Color.BLACK);
+				}
+			}
+		}
+	}
+
+  2:
+  public static void edgeDetect(double thresh, Picture pic) {
+
+		Color white = new Color(1, 1, 1);
+		Color black = new Color(0, 0, 0);
+
+		Pixel top = null;
+		Pixel bottom = null;
+
+		double topInt;
+		double botInt;
+
+		for (int i = 0; i < pic.getHeight() - 1; i++) {
+			for (int j = 0; j < pic.getWidth(); j++) {
+				top = pic.getPixel(i, j);
+				bottom = pic.getPixel(i, j + 1);
+
+				topInt = (top.getRed() + top.getGreen() + top.getBlue()) / 3;
+				botInt = (bottom.getRed() + bottom.getGreen() + bottom
+						.getBlue()) / 3;
+
+				if (Math.abs(topInt - botInt) < thresh) {
+					top.setColor(white);
+				} else {
+					top.setColor(black);
+				}
+			}
+		}
+	}
